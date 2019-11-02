@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - "Dockerfile"
+      - "DockerfileNightly"
       - "README.md"
 
 jobs:
@@ -17,6 +18,14 @@ jobs:
           name: bilelmoussaoui/rust-nightly
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Publish to Registry (GNOME Master)
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: bilelmoussaoui/rust-nightly:master
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: DockerfileNightly
 
       - name: Update Docker README
         uses: peter-evans/dockerhub-description@v2.1.0
