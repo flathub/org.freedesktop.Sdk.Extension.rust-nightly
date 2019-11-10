@@ -21,18 +21,18 @@ modules:
       - type: archive
         only-arches:
           - arm
-        url: https://static.rust-lang.org/dist/2019-11-02/rust-nightly-arm-unknown-linux-gnueabi.tar.gz
-        sha256: 8f620536e601c13cf06736f67b3d0a8e4944d1db32c0d4db718c34c6708c2253
+        url: https://static.rust-lang.org/dist/2019-11-10/rust-nightly-arm-unknown-linux-gnueabihf.tar.gz
+        sha256: bee6c8d953adc97c6517b0dd76b16423e5f99cd1e85958e045ec8281dc777b8c
       - type: archive
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2019-11-02/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: ab8636b88b5a72b9dcae70b6b547e0da6e3ba2db456719376d335aa17b29f136
+        url: https://static.rust-lang.org/dist/2019-11-10/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: 0a7ec76477383db84d52346c38dc9fda0da935654f965b5e1c8278d224eb8ed1
       - type: archive
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2019-11-02/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: ba3f59d2c19f64473212e721e07549841482efd37db045ef0cc894eb0e88a051
+        url: https://static.rust-lang.org/dist/2019-11-10/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: cd5258c1e1d17fe076ee20e840049a34f89a49e39b82d3a31bf6f23dfa71602e
     build-commands:
       - "./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose"
   - name: scripts
