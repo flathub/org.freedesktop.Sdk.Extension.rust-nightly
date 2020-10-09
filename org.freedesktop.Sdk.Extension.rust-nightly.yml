@@ -20,11 +20,6 @@ modules:
     sources:
       - type: archive
         only-arches:
-          - arm
-        url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-arm-unknown-linux-gnueabihf.tar.gz
-        sha256: 7d926a51d62fde00f6ce39a0cb9fb1ff9fb3c5c7b8a3c148d39216af0ae79e6a
-      - type: archive
-        only-arches:
           - aarch64
         url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
         sha256: 66de53a8db46e8d38f21105644fcbc6722e3967dc2bb3cb60fd025cf6e594f05
