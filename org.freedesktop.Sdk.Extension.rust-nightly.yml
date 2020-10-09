@@ -23,11 +23,21 @@ modules:
           - aarch64
         url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
         sha256: 66de53a8db46e8d38f21105644fcbc6722e3967dc2bb3cb60fd025cf6e594f05
+        x-checker-data:
+          type: rust
+          package: rust
+          channel: nightly
+          target: aarch64-unknown-linux-gnu
       - type: archive
         only-arches:
           - x86_64
         url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
         sha256: d3a98701bd89564d8294791872d109470a5b44a48107d107c8f22055620bc0c2
+        x-checker-data:
+          type: rust
+          package: rust
+          channel: nightly
+          target: x86_64-unknown-linux-gnu
     build-commands:
       - "./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose"
   - name: scripts
