@@ -1,28 +1,28 @@
 id: org.freedesktop.Sdk.Extension.rust-nightly
-branch: "20.08"
+branch: '20.08'
 runtime: org.freedesktop.Sdk
 build-extension: true
 sdk: org.freedesktop.Sdk
-runtime-version: "20.08"
+runtime-version: '20.08'
 sdk-extensions: []
 separate-locales: false
 appstream-compose: false
 build-options:
-  prefix: "/usr/lib/sdk/rust-nightly"
+  prefix: /usr/lib/sdk/rust-nightly
 cleanup:
-  - "/share/info"
-  - "/share/man"
+  - /share/info
+  - /share/man
 modules:
   - name: rust
     buildsystem: simple
     cleanup:
-      - "/share/doc/rust/html"
+      - /share/doc/rust/html
     sources:
       - type: archive
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: 66de53a8db46e8d38f21105644fcbc6722e3967dc2bb3cb60fd025cf6e594f05
+        url: https://static.rust-lang.org/dist/2020-12-22/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
+        sha256: db42b18a5a6cf7bdf4f22e4469d882e2a8dc74fddc35deb7a6c3ab67dba9a41f
         x-checker-data:
           type: rust
           package: rust
@@ -31,15 +31,15 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2020-12-09/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: d3a98701bd89564d8294791872d109470a5b44a48107d107c8f22055620bc0c2
+        url: https://static.rust-lang.org/dist/2020-12-22/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
+        sha256: b5484ca7d026f95cabcb063f94ba7527797e550b77349aaab6162d58b657b56b
         x-checker-data:
           type: rust
           package: rust
           channel: nightly
           target: x86_64-unknown-linux-gnu
     build-commands:
-      - "./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose"
+      - ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose
   - name: scripts
     sources:
       - type: script
@@ -54,7 +54,8 @@ modules:
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/share/metainfo
       - cp ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo
-      - appstream-compose --basename ${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}
+      - appstream-compose --basename ${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
+        ${FLATPAK_ID}
     sources:
       - type: file
         path: org.freedesktop.Sdk.Extension.rust-nightly.appdata.xml
