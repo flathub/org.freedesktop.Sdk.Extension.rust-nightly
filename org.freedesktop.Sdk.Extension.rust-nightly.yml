@@ -15,8 +15,6 @@ cleanup:
 modules:
   - name: rust
     buildsystem: simple
-    cleanup:
-      - /share/doc/rust/html
     sources:
       - type: archive
         only-arches:
@@ -39,7 +37,7 @@ modules:
           channel: nightly
           target: x86_64-unknown-linux-gnu
     build-commands:
-      - ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose
+      - ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs --disable-ldconfig --verbose
   - name: scripts
     sources:
       - type: script
