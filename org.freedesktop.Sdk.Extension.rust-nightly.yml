@@ -19,6 +19,7 @@ modules:
       - type: archive
         only-arches:
           - aarch64
+        dest: rust
         url: https://static.rust-lang.org/dist/2021-05-14/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
         sha256: a01c4350b36cf492f9f2c7124a9e75bbced610632fa7113c1f416f2051a73ffb
         x-checker-data:
@@ -29,6 +30,7 @@ modules:
       - type: archive
         only-arches:
           - x86_64
+        dest: rust
         url: https://static.rust-lang.org/dist/2021-05-14/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
         sha256: b6fdc503b8ec59d4d5cca2f93c1641961907b8c3b6ff64b2b121a6f84380e298
         x-checker-data:
@@ -36,8 +38,18 @@ modules:
           package: rust
           channel: nightly
           target: x86_64-unknown-linux-gnu
+      - type: archive
+        dest: rust-src
+        url: https://static.rust-lang.org/dist/2021-05-14/rust-src-nightly.tar.xz
+        sha256: 0a17d813d5df512b222941e2363b5a04a5f5e34c7bacf5bdda4d30497a350fc0
+        x-checker-data:
+          type: rust
+          package: rust-src
+          channel: nightly
+          target: "*"
     build-commands:
-      - ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs --disable-ldconfig --verbose
+      - cd rust && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs --disable-ldconfig --verbose
+      - cd rust-src && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose
   - name: scripts
     sources:
       - type: script
