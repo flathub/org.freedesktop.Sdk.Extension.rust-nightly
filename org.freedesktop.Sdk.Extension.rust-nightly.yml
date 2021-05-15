@@ -20,8 +20,8 @@ modules:
         only-arches:
           - aarch64
         dest: rust
-        url: https://static.rust-lang.org/dist/2021-05-14/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
-        sha256: a01c4350b36cf492f9f2c7124a9e75bbced610632fa7113c1f416f2051a73ffb
+        url: https://static.rust-lang.org/dist/2021-05-15/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
+        sha256: 8b40bd5c53563e741488c3d2ee72f216e2f2dc6c4a88406e312b40ff27e0a0e4
         x-checker-data:
           type: rust
           package: rust
@@ -31,8 +31,8 @@ modules:
         only-arches:
           - x86_64
         dest: rust
-        url: https://static.rust-lang.org/dist/2021-05-14/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
-        sha256: b6fdc503b8ec59d4d5cca2f93c1641961907b8c3b6ff64b2b121a6f84380e298
+        url: https://static.rust-lang.org/dist/2021-05-15/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
+        sha256: e65578b6445938fb0d96b29ddc5a58d7db48b24b3a7ad9e32b41808223b1bba7
         x-checker-data:
           type: rust
           package: rust
@@ -40,16 +40,18 @@ modules:
           target: x86_64-unknown-linux-gnu
       - type: archive
         dest: rust-src
-        url: https://static.rust-lang.org/dist/2021-05-14/rust-src-nightly.tar.xz
-        sha256: 0a17d813d5df512b222941e2363b5a04a5f5e34c7bacf5bdda4d30497a350fc0
+        url: https://static.rust-lang.org/dist/2021-05-15/rust-src-nightly.tar.xz
+        sha256: 068c18d39ff70c7f234b33bcb013666e0e10c7cd9cfe1542b5876da9a4810494
         x-checker-data:
           type: rust
           package: rust-src
           channel: nightly
-          target: "*"
+          target: '*'
     build-commands:
-      - cd rust && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs --disable-ldconfig --verbose
-      - cd rust-src && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig --verbose
+      - cd rust && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs
+        --disable-ldconfig --verbose
+      - cd rust-src && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig
+        --verbose
   - name: scripts
     sources:
       - type: script
