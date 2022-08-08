@@ -1,5 +1,5 @@
 id: org.freedesktop.Sdk.Extension.rust-nightly
-branch: '22.08'
+branch: '22.08beta'
 runtime: org.freedesktop.Sdk
 build-extension: true
 sdk: org.freedesktop.Sdk
