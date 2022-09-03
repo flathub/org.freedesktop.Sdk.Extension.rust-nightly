@@ -20,8 +20,8 @@ modules:
         only-arches:
           - aarch64
         dest: rust
-        url: https://static.rust-lang.org/dist/2022-09-02/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
-        sha256: 8ee4d0d74106fe58f0fb9b8b5f12101d0f85da95aef55e5ba0da260a981cd04f
+        url: https://static.rust-lang.org/dist/2022-09-03/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
+        sha256: 61b47ed0a2e75620f673c166a4f62ef642d8675b0b3edfbf7e373cbf7a01605f
         x-checker-data:
           type: rust
           package: rust
@@ -31,8 +31,8 @@ modules:
         only-arches:
           - x86_64
         dest: rust
-        url: https://static.rust-lang.org/dist/2022-09-02/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
-        sha256: 4afb49d262bcf8e0255954b8fa0fe2681a5b79372e460c22e3b5bdf55b9a3f1f
+        url: https://static.rust-lang.org/dist/2022-09-03/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
+        sha256: 718c578c1baa48c102f481f9facbd9ab0182afd933e0c5c936c6b5d20d4f28dc
         x-checker-data:
           type: rust
           package: rust
@@ -40,8 +40,8 @@ modules:
           target: x86_64-unknown-linux-gnu
       - type: archive
         dest: rust-src
-        url: https://static.rust-lang.org/dist/2022-09-02/rust-src-nightly.tar.xz
-        sha256: 612d069d4f21d8701d155c06901ba8f8fc2f8bd18d2e06a3b36f987231975022
+        url: https://static.rust-lang.org/dist/2022-09-03/rust-src-nightly.tar.xz
+        sha256: 2a393be43b16c4e3890e1ab148b5995a901bd220fbe1b92fbbefaf5582530216
         x-checker-data:
           type: rust
           package: rust-src
