@@ -30,6 +30,7 @@
 		bil.elmoussaoui@gmail.com
 	</update_contact>
   <releases>
+    <release version="1.65.0-nightly-20220915" date="2022-09-15"/>
     <release version="1.65.0-nightly-20220914" date="2022-09-14"/>
     <release version="1.65.0-nightly-20220913" date="2022-09-13"/>
     <release version="1.65.0-nightly-20220912" date="2022-09-12"/>
