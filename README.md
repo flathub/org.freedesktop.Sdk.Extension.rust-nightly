@@ -1,3 +1,5 @@
+## Deprecated as Nightly releases are not allowed on Flathub
+
 # Rust Nightly SDK
 
 If you're using a CI, you can use this image which is updated automatically
