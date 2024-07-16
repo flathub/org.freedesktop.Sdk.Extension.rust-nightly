@@ -5,8 +5,8 @@
   <metadata_license>CC0-1.0</metadata_license>
   <name>Rust nightly Sdk extension</name>
   <summary>Rust nightly compiler and tools</summary>
+  <developer_name>Rust Foundation</developer_name>
   <description>
-    <p>NOTE: This extension is deprecated on Flathub. Please switch to bundling.</p>
     <p>Rust nightly compiler and tools</p>
   </description>
   <project_license>Apache-2.0 AND MIT</project_license>
