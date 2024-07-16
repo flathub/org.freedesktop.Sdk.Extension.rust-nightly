@@ -4,70 +4,54 @@ runtime: org.freedesktop.Sdk
 build-extension: true
 sdk: org.freedesktop.Sdk
 runtime-version: '23.08'
-sdk-extensions: []
 separate-locales: false
-appstream-compose: false
-build-options:
-  prefix: /usr/lib/sdk/rust-nightly
-cleanup:
-  - /share/info
-  - /share/man
+
 modules:
+
   - name: rust
     buildsystem: simple
+    build-commands:
+      - install -Dm0644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm0755 apply_extra ${FLATPAK_DEST}/bin/apply_extra
     sources:
-      - type: archive
+      - type: extra-data
         only-arches:
           - aarch64
-        dest: rust
         url: https://static.rust-lang.org/dist/2024-05-14/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
         sha256: 0cbbcbc542c9e7073813d92e02c35c8c503829d65e59c235c641bf9ac989b98f
+        filename: rust-nightly.tar.xz
+        size: 230572160
         x-checker-data:
-          type: rust
-          package: rust
-          channel: nightly
-          target: aarch64-unknown-linux-gnu
-      - type: archive
+          type: rotating-url
+          url: https://static.rust-lang.org/dist/2024-05-14/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
+          pattern: https://static.rust-lang.org/dist/([0-9.]+)/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
+      - type: extra-data
         only-arches:
           - x86_64
-        dest: rust
         url: https://static.rust-lang.org/dist/2024-05-14/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
         sha256: d2cf0e8c9741080b348422678f1669d7cdd9d60daa46959d0f90a36dfb88cd3b
+        filename: rust-nightly.tar.xz
+        size: 170422496
         x-checker-data:
-          type: rust
-          package: rust
-          channel: nightly
-          target: x86_64-unknown-linux-gnu
-      - type: archive
-        dest: rust-src
+          type: rotating-url
+          url: https://static.rust-lang.org/dist/2024-05-14/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
+          pattern: https://static.rust-lang.org/dist/([0-9.]+)/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
+      - type: extra-data
         url: https://static.rust-lang.org/dist/2024-05-14/rust-src-nightly.tar.xz
         sha256: 827393c706c85065f8cc25b15c3fc66b00a4fbac14dd004bb7158b4db04cf8f3
+        filename: rust-src-nightly.tar.xz
+        size: 2862432
         x-checker-data:
-          type: rust
-          package: rust-src
-          channel: nightly
-          target: '*'
-    build-commands:
-      - cd rust && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --without=rust-docs
-        --without=rust-docs-json-preview --disable-ldconfig --verbose
-      - cd rust-src && ./install.sh --prefix=/usr/lib/sdk/rust-nightly --disable-ldconfig
-        --verbose
-  - name: scripts
-    sources:
-      - type: script
-        commands:
-          - export PATH=$PATH:/usr/lib/sdk/rust-nightly/bin
-        dest-filename: enable.sh
-    buildsystem: simple
-    build-commands:
-      - cp enable.sh /usr/lib/sdk/rust-nightly/
-  - name: appdata
-    buildsystem: simple
-    build-commands:
-      - mkdir -p ${FLATPAK_DEST}/share/metainfo
-      - cp ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo
-      - appstream-compose --basename ${FLATPAK_ID} --prefix=${FLATPAK_DEST} --origin=flatpak
-        ${FLATPAK_ID}
-    sources:
+          type: rotating-url
+          url: https://static.rust-lang.org/dist/2024-05-14/rust-src-nightly.tar.xz
+          pattern: https://static.rust-lang.org/dist/([0-9.]+)/rust-src-nightly.tar.xz
       - type: file
         path: org.freedesktop.Sdk.Extension.rust-nightly.appdata.xml
+      - type: script
+        commands:
+          - mkdir -p rust-nightly && tar -xf rust-nightly.tar.xz --strip=1 -C rust-nightly
+          - mkdir -p rust-src-nightly && tar -xf rust-src-nightly.tar.xz --strip=1 -C rust-src-nightly
+          - ./rust-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --without=rust-docs --without=rust-docs-json-preview --disable-ldconfig > /dev/null
+          - ./rust-src-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --disable-ldconfig > /dev/null
+          - rm -rf rust-nightly.tar.xz rust-src-nightly.tar.xz rust-src-nightly rust-nightly sdk/rust-nightly/etc sdk/rust-nightly/share
+        dest-filename: apply_extra
