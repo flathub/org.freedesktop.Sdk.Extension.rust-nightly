@@ -1,3 +1,5 @@
 {
-  "disable-external-data-checker": true
+  "disable-external-data-checker": true,
+  "end-of-life": "This extension should not be used for packaging purposes."
 }
+
