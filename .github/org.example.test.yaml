@@ -1,0 +1,45 @@
+app-id: org.example.test
+runtime: org.freedesktop.Platform
+runtime-version: '24.08beta'
+sdk: org.freedesktop.Sdk
+command: test
+add-extensions:
+  org.freedesktop.Sdk.Extension.rust-nightly:
+    version: '24.08beta'
+    directory: sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-nightly
+modules:
+  - name: test
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/sdk
+      - install -Dm 0755 test.sh ${FLATPAK_DEST}/bin/test
+    sources:
+      - type: script
+        dest-filename: test.sh
+        commands:
+          - set -eu
+          - export PATH=$PATH:/app/sdk/extra/sdk/rust-nightly/bin
+          - |
+            for i in $(cd /app/sdk/extra/sdk/rust-nightly/bin && find * -maxdepth 1 -type f|grep -Ev "cargo-miri|rust-demangler|rls|rust-gdbgui|rust-lldb"); do
+              echo "Launching ${i}"
+              "${i}" "--version"
+            done
+
+  - name: lapce
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/rust-nightly/extra/sdk/rust-nightly/bin
+      env:
+        CARGO_HOME: /run/build/lapce/cargo
+      build-args:
+        - --share=network
+    build-commands:
+      - cargo fetch --manifest-path Cargo.toml --verbose
+      - cargo build --no-default-features -p lapce-app --features all-languages --profile release-lto --verbose
+      - install -Dm0755 target/release-lto/lapce ${FLATPAK_DEST}/bin/lapce
+    sources:
+      - type: git
+        url: https://github.com/lapce/lapce.git
+        commit: 8531d7abe970f9d1235bb8e0704d5614cb3bd023
