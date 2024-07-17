@@ -38,7 +38,7 @@ jobs:
       run: |
         mkdir -p org.example.test && cd org.example.test
         dbus-run-session flatpak run org.flatpak.Builder --verbose --user --force-clean --repo=repo \
-          --install-deps-from=flathub-beta--default-branch=localtest --ccache --install \
+          --install-deps-from=flathub-beta --default-branch=localtest --ccache --install \
           builddir ../.github/org.example.test.yaml
 
     - name: Run the test
