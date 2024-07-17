@@ -11,11 +11,6 @@ jobs:
       with:
         ref: beta
 
-    - uses: actions/cache@v4
-      with:
-        path: .flatpak-builder
-        key: ${{ runner.os }}-flatpak-builder
-
     - name: Install latest flatpak
       run: |
         sudo add-apt-repository ppa:flatpak/stable
