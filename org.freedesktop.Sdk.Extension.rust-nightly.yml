@@ -45,13 +45,65 @@ modules:
           type: rotating-url
           url: https://static.rust-lang.org/dist/2024-05-14/rust-src-nightly.tar.xz
           pattern: https://static.rust-lang.org/dist/([0-9.]+)/rust-src-nightly.tar.xz
+      - type: extra-data
+        only-arches:
+          - x86_64
+        url: https://github.com/rui314/mold/releases/download/v2.32.1/mold-2.32.1-x86_64-linux.tar.gz
+        sha256: d9caf252d58b5f6a0fa5aa30fbe05d17b1c84f498106dc634cbce73866abdfeb
+        filename: mold-linux.tar.gz
+        size: 8352213
+        x-checker-data:
+          type: anitya
+          project-id: 241732
+          stable-only: true
+          url-template: https://github.com/rui314/mold/releases/download/v$version/mold-$version-x86_64-linux.tar.gz
+      - type: extra-data
+        only-arches:
+          - aarch64
+        url: https://github.com/rui314/mold/releases/download/v2.32.1/mold-2.32.1-aarch64-linux.tar.gz
+        sha256: 18ffc28b392fef90f3a73b4c40445925a661298f255c3031753c351ae7c7600a
+        filename: mold-linux.tar.gz
+        size: 8380867
+        x-checker-data:
+          type: anitya
+          project-id: 241732
+          stable-only: true
+          url-template: https://github.com/rui314/mold/releases/download/v$version/mold-$version-aarch64-linux.tar.gz
+      - type: extra-data
+        only-arches:
+          - x86_64
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2024-07-15/rust-analyzer-x86_64-unknown-linux-gnu.gz
+        sha256: 7b07af48b60f52a2eb921f30cc564a3b93237431608b6a9b9e9295926b663a85
+        filename: rust-analyzer.gz
+        size: 14969526
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
+          version-query: ".tag_name"
+          url-query: ".assets[] | select(.name==\"rust-analyzer-x86_64-unknown-linux-gnu.gz\") | .browser_download_url"
+      - type: extra-data
+        only-arches:
+          - aarch64
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2024-07-15/rust-analyzer-aarch64-unknown-linux-gnu.gz
+        sha256: 21586bac1eb5663c8942b0891878ebed3c40e3d87ef5f12a4fb1a0022a6ecb39
+        filename: rust-analyzer.gz
+        size: 14960849
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
+          version-query: ".tag_name"
+          url-query: ".assets[] | select(.name==\"rust-analyzer-aarch64-unknown-linux-gnu.gz\") | .browser_download_url"
       - type: file
         path: org.freedesktop.Sdk.Extension.rust-nightly.appdata.xml
       - type: script
         commands:
           - mkdir -p rust-nightly && tar -xf rust-nightly.tar.xz --strip=1 -C rust-nightly
           - mkdir -p rust-src-nightly && tar -xf rust-src-nightly.tar.xz --strip=1 -C rust-src-nightly
+          - mkdir -p mold && tar -xf mold-linux.tar.gz --strip=1 -C mold
+          - gunzip rust-analyzer.gz
           - ./rust-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --without=rust-docs --without=rust-docs-json-preview --disable-ldconfig > /dev/null
           - ./rust-src-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --disable-ldconfig > /dev/null
-          - rm -rf rust-nightly.tar.xz rust-src-nightly.tar.xz rust-src-nightly rust-nightly sdk/rust-nightly/etc sdk/rust-nightly/share
+          - install -Dm0755 mold/bin/mold -t /app/extra/sdk/rust-nightly/bin
+          - install -Dm0755 rust-analyzer -t /app/extra/sdk/rust-nightly/bin
+          - rm -rf rust-nightly.tar.xz rust-src-nightly.tar.xz mold-linux.tar.gz rust-analyzer.gz rust-analyzer mold rust-src-nightly rust-nightly sdk/rust-nightly/etc sdk/rust-nightly/share
         dest-filename: apply_extra
