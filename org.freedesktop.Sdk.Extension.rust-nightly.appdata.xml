@@ -14,6 +14,9 @@
   <url type="bugtracker">https://github.com/flathub/org.freedesktop.Sdk.Extension.rust-nightly/</url>
   <update_contact>bil.elmoussaoui@gmail.com</update_contact>
   <releases>
+    <release version="2024-07-22" date="2024-07-22">
+      <description></description>
+    </release>
     <release version="1.80.0-nightly-20240514" date="2024-05-14"/>
   </releases>
 </component>
