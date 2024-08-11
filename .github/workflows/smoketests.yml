@@ -2,6 +2,10 @@ name: Smoketests
 
 on:
   push:
+    branches:
+      - 'master'
+      - 'beta'
+      - 'branch/**'
 
 jobs:
   smoketests:
