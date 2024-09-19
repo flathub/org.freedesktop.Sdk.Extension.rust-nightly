@@ -2,17 +2,18 @@ name: Smoketests
 
 on:
   push:
-
+    branches:
+      - '*'
+      - '!wiki'
   pull_request:
-    types: [opened, reopened]
+    types: [assigned, opened, synchronize, reopened]
 
 jobs:
   smoketests:
+    if: ${{ github.ref != 'refs/heads/wiki' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        ref: beta
 
     - name: Install latest flatpak
       run: |
