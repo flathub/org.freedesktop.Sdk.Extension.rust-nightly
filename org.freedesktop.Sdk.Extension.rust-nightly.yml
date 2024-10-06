@@ -17,29 +17,29 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: b5c67b5f31d329cb9c310cef316d506fb88f8ff1b48e0db7ded822f330f06fd3
+        url: https://static.rust-lang.org/dist/2024-10-06/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: be39ab4d1a2438950d2161eb5fcdbc6ba6dbb27f5131b4c50c540f8d6198cad6
         filename: rust-nightly.tar.xz
-        size: 511865372
+        size: 507304628
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: 82d0e9261e35a0268e05c3bd105c6fdc3f10d2c287584ce040114ac40d8d5bf3
+        url: https://static.rust-lang.org/dist/2024-10-06/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: c68ddb5b643ab308f844f8c2982f54b3464eccf4c52586773ae0e2de6d89229b
         filename: rust-nightly.tar.xz
-        size: 363467705
+        size: 360545666
       - type: extra-data
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-src-nightly.tar.gz
-        sha256: e141ac6fc12733dd26bc4bccd2a8b621d0cce6f7ed1ddcdfa6b9609037af7cc9
+        url: https://static.rust-lang.org/dist/2024-10-06/rust-src-nightly.tar.gz
+        sha256: 16e720e05e8dd21bcf17497e56964694b5001217c2e2fc4545fffce1b3f7e09b
         filename: rust-src-nightly.tar.xz
-        size: 4451100
+        size: 4480093
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://github.com/rui314/mold/releases/download/v2.34.0/mold-2.34.0-x86_64-linux.tar.xz
-        sha256: 0405c58d9afb47dad44912faa21a8fc2f8835352434b458c3ae9665e6581d1cb
+        url: https://github.com/rui314/mold/releases/download/v2.34.1/mold-2.34.1-x86_64-linux.tar.gz
+        sha256: dafd02fe19c51818aa22c9d569393616b1a85a2220d6fb32ba3728d351074e59
         filename: mold-linux.tar.gz
-        size: 8183586
+        size: 8249501
         x-checker-data:
           type: anitya
           project-id: 241732
@@ -48,10 +48,10 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://github.com/rui314/mold/releases/download/v2.34.0/mold-2.34.0-aarch64-linux.tar.gz
-        sha256: aa8cd24aaf65564d14f6d7ff457471c3898f7e93a1827353b7ec5e82736ee93e
+        url: https://github.com/rui314/mold/releases/download/v2.34.1/mold-2.34.1-aarch64-linux.tar.gz
+        sha256: ea5f1266b92aa17c262210766dfd7cfd6637a6a94ac4c75e5def50d534ca24c1
         filename: mold-linux.tar.gz
-        size: 8219559
+        size: 8296932
         x-checker-data:
           type: anitya
           project-id: 241732
