@@ -17,26 +17,26 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-aarch64-unknown-linux-gnu.tar.xz
-        sha256: 7451c4e334c61a279c236b7f14a5636f9ea25052c72cc7997a7d07ed7aefc498
+        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: b5c67b5f31d329cb9c310cef316d506fb88f8ff1b48e0db7ded822f330f06fd3
         filename: rust-nightly.tar.xz
-        size: 242631392
+        size: 511865372
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-x86_64-unknown-linux-gnu.tar.xz
-        sha256: 0d484999cad61754eaa976e0eef3c98dacb2e9cc4b24fa639a697c87bba8dd38
+        url: https://static.rust-lang.org/dist/2024-09-17/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: 82d0e9261e35a0268e05c3bd105c6fdc3f10d2c287584ce040114ac40d8d5bf3
         filename: rust-nightly.tar.xz
-        size: 184140988
+        size: 363467705
       - type: extra-data
-        url: https://static.rust-lang.org/dist/2024-09-17/rust-src-nightly.tar.xz
-        sha256: 2d445ce86f291b966dcb94420c0e429765c42ec0ece156bd42024fa26d4fe8dc
+        url: https://static.rust-lang.org/dist/2024-09-17/rust-src-nightly.tar.gz
+        sha256: e141ac6fc12733dd26bc4bccd2a8b621d0cce6f7ed1ddcdfa6b9609037af7cc9
         filename: rust-src-nightly.tar.xz
-        size: 2973484
+        size: 4451100
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://github.com/rui314/mold/releases/download/v2.34.0/mold-2.34.0-x86_64-linux.tar.gz
+        url: https://github.com/rui314/mold/releases/download/v2.34.0/mold-2.34.0-x86_64-linux.tar.xz
         sha256: 0405c58d9afb47dad44912faa21a8fc2f8835352434b458c3ae9665e6581d1cb
         filename: mold-linux.tar.gz
         size: 8183586
@@ -68,8 +68,7 @@ modules:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name=="rust-analyzer-x86_64-unknown-linux-gnu.gz")
-            | .browser_download_url
+          url-query: .assets[] | select(.name=="rust-analyzer-x86_64-unknown-linux-gnu.gz") | .browser_download_url
       - type: extra-data
         only-arches:
           - aarch64
@@ -81,24 +80,20 @@ modules:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name=="rust-analyzer-aarch64-unknown-linux-gnu.gz")
-            | .browser_download_url
+          url-query: .assets[] | select(.name=="rust-analyzer-aarch64-unknown-linux-gnu.gz") | .browser_download_url
       - type: file
         path: org.freedesktop.Sdk.Extension.rust-nightly.appdata.xml
       - type: script
         commands:
           - mkdir -p rust-nightly && tar -xf rust-nightly.tar.xz --strip=1 -C rust-nightly
-          - mkdir -p rust-src-nightly && tar -xf rust-src-nightly.tar.xz --strip=1
-            -C rust-src-nightly
+          - mkdir -p rust-src-nightly && tar -xf rust-src-nightly.tar.xz --strip=1 -C rust-src-nightly
           - mkdir -p mold && tar -xf mold-linux.tar.gz --strip=1 -C mold
           - gunzip rust-analyzer.gz
-          - ./rust-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --without=rust-docs
-            --without=rust-docs-json-preview --disable-ldconfig > /dev/null
-          - ./rust-src-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --disable-ldconfig
-            > /dev/null
+          - ./rust-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --without=rust-docs --without=rust-docs-json-preview
+            --disable-ldconfig > /dev/null
+          - ./rust-src-nightly/install.sh --prefix=/app/extra/sdk/rust-nightly --disable-ldconfig > /dev/null
           - install -Dm0755 mold/bin/mold -t /app/extra/sdk/rust-nightly/bin
           - install -Dm0755 rust-analyzer -t /app/extra/sdk/rust-nightly/bin
-          - rm -rf rust-nightly.tar.xz rust-src-nightly.tar.xz mold-linux.tar.gz rust-analyzer.gz
-            rust-analyzer mold rust-src-nightly rust-nightly sdk/rust-nightly/etc
-            sdk/rust-nightly/share
+          - rm -rf rust-nightly.tar.xz rust-src-nightly.tar.xz mold-linux.tar.gz rust-analyzer.gz rust-analyzer mold rust-src-nightly
+            rust-nightly sdk/rust-nightly/etc sdk/rust-nightly/share
         dest-filename: apply_extra
