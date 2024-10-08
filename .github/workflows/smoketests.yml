@@ -3,10 +3,9 @@ name: Smoketests
 on:
   push:
     branches:
-      - '*'
-      - '!wiki'
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
+      - 'master'
+      - 'beta'
+      - 'branch/**'
 
 jobs:
   smoketests:

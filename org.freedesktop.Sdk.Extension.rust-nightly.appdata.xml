@@ -5,7 +5,9 @@
   <metadata_license>CC0-1.0</metadata_license>
   <name>Rust nightly Sdk extension</name>
   <summary>Rust nightly compiler and tools</summary>
-  <developer_name>Rust Foundation</developer_name>
+  <developer id="org.rust_lang">
+    <name>Rust Foundation</name>
+  </developer>
   <description>
     <p>Rust nightly compiler and tools</p>
   </description>
@@ -14,6 +16,6 @@
   <url type="bugtracker">https://github.com/flathub/org.freedesktop.Sdk.Extension.rust-nightly/</url>
   <update_contact>bil.elmoussaoui@gmail.com</update_contact>
   <releases>
-    <release version="1.80.0-nightly-20240514" date="2024-05-14"/>
+    <release version="1.83.0-nightly-20241004" date="2024-10-04"/>
   </releases>
 </component>
