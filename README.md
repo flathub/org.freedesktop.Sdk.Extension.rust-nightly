@@ -1,5 +1,3 @@
-# This extension should not be used for packaging purposes
-
 # Usage
 
 The path where rust and cargo binaries are located needs to be exported
