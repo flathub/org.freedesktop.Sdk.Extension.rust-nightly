@@ -33,7 +33,6 @@ jobs:
         if: ${{ success() }}
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PAT_TOKEN }}
           branch-suffix: "random"
           commit-message: Update rust-nightly modules
           title: "Update rust-nightly modules"
