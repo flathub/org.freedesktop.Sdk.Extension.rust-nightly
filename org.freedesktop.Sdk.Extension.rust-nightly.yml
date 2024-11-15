@@ -14,6 +14,7 @@ modules:
       - install -Dm0644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm0755 apply_extra ${FLATPAK_DEST}/bin/apply_extra
       - mkdir -p ${FLATPAK_DEST}/bin
+      - ln -sf /usr/lib/sdk/rust-nightly/extra/sdk/rust-nightly/lib ${FLATPAK_DEST}
       - |
         binaries=(
             "cargo"
