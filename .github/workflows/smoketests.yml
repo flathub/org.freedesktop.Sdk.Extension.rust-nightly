@@ -6,12 +6,15 @@ on:
       - 'master'
       - 'beta'
       - 'branch/**'
-      - 'create-pull-request/**'
   pull_request:
+    branches:
+      - 'master'
+      - 'beta'
+      - 'branch/**'
+  workflow_dispatch:
 
 jobs:
   smoketests:
-    if: (github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
