@@ -13,6 +13,28 @@ modules:
     build-commands:
       - install -Dm0644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm0755 apply_extra ${FLATPAK_DEST}/bin/apply_extra
+      - mkdir -p ${FLATPAK_DEST}/bin
+      - |
+        binaries=(
+            "cargo"
+            "cargo-clippy"
+            "cargo-fmt"
+            "cargo-miri"
+            "clippy-driver"
+            "miri"
+            "mold"
+            "rls"
+            "rust-analyzer"
+            "rustc"
+            "rustdoc"
+            "rustfmt"
+            "rust-gdb"
+            "rust-gdbgui"
+            "rust-lldb"
+        )
+        for i in ${binaries[@]}; do
+          ln -s /usr/lib/sdk/rust-nightly/extra/sdk/rust-nightly/bin/$i ${FLATPAK_DEST}/bin/$i
+        done
     sources:
       - type: extra-data
         only-arches:
