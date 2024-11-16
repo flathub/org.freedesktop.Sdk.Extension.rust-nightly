@@ -1,82 +1,82 @@
 from ruamel.yaml import YAML
 import toml
 import requests
-import sys
 
-url = "https://static.rust-lang.org/dist/channel-rust-nightly.toml"
+URL = "https://static.rust-lang.org/dist/channel-rust-nightly.toml"
 MANIFEST_NAME = "org.freedesktop.Sdk.Extension.rust-nightly.yml"
 
 
-def check():
-    assert rust_aarch64.get("only-arches")[0] == "aarch64", rust_aarch64.get(
-        "only-arches"
-    )[0]
-    assert rust_aarch64.get("url").endswith(
-        "rust-nightly-aarch64-unknown-linux-gnu.tar.gz"
-    ), rust_aarch64.get("url")
-    assert rust_x86_64.get("only-arches")[0] == "x86_64", rust_x86_64.get(
-        "only-arches"
-    )[0]
-    assert rust_x86_64.get("url").endswith(
-        "rust-nightly-x86_64-unknown-linux-gnu.tar.gz"
-    ), rust_x86_64.get("url")
-    assert rust_src.get("url").endswith("rust-src-nightly.tar.gz"), rust_src.get("url")
+def load_yaml(file_name):
+    yaml = YAML()
+    yaml.indent(mapping=2, sequence=4, offset=2)
+    yaml.width = 120
+    with open(file_name, "r") as file:
+        return yaml, yaml.load(file)
 
 
-yaml = YAML()
-yaml.indent(mapping=2, sequence=4, offset=2)
-yaml.width = 120
-with open(MANIFEST_NAME) as file:
-    l = yaml.load(file)
+def save_yaml(file_name, data, yaml_instance):
+    with open(file_name, "w") as file:
+        yaml_instance.dump(data, file)
 
-    rust_aarch64 = l["modules"][0]["sources"][0]
-    rust_x86_64 = l["modules"][0]["sources"][1]
-    rust_src = l["modules"][0]["sources"][2]
 
-    check()
+def fetch_data(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    return response
 
-    r = requests.get(url)
-    if r.status_code == 200:
-        data = toml.loads(r.text)
 
-    new_aarch64_url = data["pkg"]["rust"]["target"]["aarch64-unknown-linux-gnu"].get(
-        "url"
-    )
-    new_aarch64_hash = data["pkg"]["rust"]["target"]["aarch64-unknown-linux-gnu"].get(
-        "hash"
-    )
-    new_x86_64_url = data["pkg"]["rust"]["target"]["x86_64-unknown-linux-gnu"].get(
-        "url"
-    )
-    new_x86_64_hash = data["pkg"]["rust"]["target"]["x86_64-unknown-linux-gnu"].get(
-        "hash"
-    )
-    new_rust_src_url = data["pkg"]["rust-src"]["target"]["*"].get("url")
-    new_rust_src_hash = data["pkg"]["rust-src"]["target"]["*"].get("hash")
+def update_source(source, new_data, file_size):
+    source.update(url=new_data["url"], sha256=new_data["hash"], size=file_size)
 
-    r = requests.get(new_aarch64_url)
-    if r.status_code == 200:
-        aarch64_file_size = len(r.content)
 
-    r = requests.get(new_x86_64_url)
-    if r.status_code == 200:
-        x86_64_file_size = len(r.content)
+def validate_sources(sources, suffixes):
+    for arch, source in sources.items():
+        if "only-arches" in source:
+            assert (
+                arch == source["only-arches"][0]
+            ), f"Mismatch in 'only-arches' for {arch}: {source['only-arches']}"
+        else:
+            assert arch == "rust-src"
 
-    r = requests.get(new_rust_src_url)
-    if r.status_code == 200:
-        rust_src_file_size = len(r.content)
+        assert source["url"].endswith(
+            suffixes[arch]
+        ), f"URL for {arch} does not end with {suffixes[arch]}: {source['url']}"
 
-    rust_aarch64.update(
-        url=new_aarch64_url, sha256=new_aarch64_hash, size=aarch64_file_size
-    )
-    rust_x86_64.update(
-        url=new_x86_64_url, sha256=new_x86_64_hash, size=x86_64_file_size
-    )
-    rust_src.update(
-        url=new_rust_src_url, sha256=new_rust_src_hash, size=rust_src_file_size
-    )
 
-    check()
+def main():
+    yaml, manifest = load_yaml(MANIFEST_NAME)
 
-    with open(MANIFEST_NAME, "w") as out_file:
-        yaml.dump(l, out_file)
+    sources = {
+        "aarch64": manifest["modules"][0]["sources"][0],
+        "x86_64": manifest["modules"][0]["sources"][1],
+        "rust-src": manifest["modules"][0]["sources"][2],
+    }
+
+    suffixes = {
+        "aarch64": "rust-nightly-aarch64-unknown-linux-gnu.tar.gz",
+        "x86_64": "rust-nightly-x86_64-unknown-linux-gnu.tar.gz",
+        "rust-src": "rust-src-nightly.tar.gz",
+    }
+
+    validate_sources(sources, suffixes)
+
+    nightly_data = toml.loads(fetch_data(URL).text)
+
+    for arch, source in sources.items():
+        if arch == "rust-src":
+            new_data = nightly_data["pkg"]["rust-src"]["target"]["*"]
+        else:
+            new_data = nightly_data["pkg"]["rust"]["target"][
+                f"{arch}-unknown-linux-gnu"
+            ]
+
+        response = fetch_data(new_data["url"])
+        update_source(source, new_data, len(response.content))
+
+    validate_sources(sources, suffixes)
+
+    save_yaml(MANIFEST_NAME, manifest, yaml)
+
+
+if __name__ == "__main__":
+    main()
