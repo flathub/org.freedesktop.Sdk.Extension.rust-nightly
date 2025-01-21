@@ -31,6 +31,7 @@ jobs:
 
       - name: Create pull request
         if: ${{ success() }}
+        id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch-suffix: "random"
@@ -41,3 +42,7 @@ jobs:
           sign-commits: true
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+
+      - name: Set auto-merge
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
+        run: gh pr merge --merge --auto ${{ steps.create-pr.outputs.pull-request-number }}
