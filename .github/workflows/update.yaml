@@ -6,6 +6,7 @@ on:
 jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     permissions:
       contents: write
       pull-requests: write
@@ -48,7 +49,7 @@ jobs:
 
       - name: Pause for a while
         if: ${{ steps.create-pr.outputs.pull-request-number }}
-        run: sleep 300
+        run: sleep 2000
 
       - name: Set auto-merge
         if: ${{ steps.create-pr.outputs.pull-request-number }}
