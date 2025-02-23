@@ -40,22 +40,22 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2025-02-16/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: 5ca91ea729fa74a3719a150f8b44813f3cd6c06404df2b4b3c8e025eba07b143
+        url: https://static.rust-lang.org/dist/2025-02-23/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: c44089836891f59869dd07f65787f3bacad18cd798c505fd9af3275aa6b38d1f
         filename: rust-nightly.tar.xz
-        size: 313526009
+        size: 318220526
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2025-02-16/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: 15a427ec6418d13c4c23095fcbae04366d5902994e08533f5fe279c7f1b64b9b
+        url: https://static.rust-lang.org/dist/2025-02-23/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: 72776dfc959fc8ebeae8556e1e6e402433e3a1c19dbd519da2dc5fc1a395674b
         filename: rust-nightly.tar.xz
-        size: 358089268
+        size: 364461405
       - type: extra-data
-        url: https://static.rust-lang.org/dist/2025-02-16/rust-src-nightly.tar.gz
-        sha256: a319aed82e23ccf10320b8ad6c6fc065135879efb3aac48c5e8404cb8a35ffc1
+        url: https://static.rust-lang.org/dist/2025-02-23/rust-src-nightly.tar.gz
+        sha256: fc7f57561c4a22e9ec3d329881281086260442a5963202fb8d9a77cf9ffe4fbd
         filename: rust-src-nightly.tar.xz
-        size: 4592482
+        size: 4597208
       - type: extra-data
         only-arches:
           - x86_64
@@ -83,10 +83,10 @@ modules:
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-02-10/rust-analyzer-x86_64-unknown-linux-gnu.gz
-        sha256: 5246a3b0d77b1980d0d8a53da6d9216b585402b6e4dda8c5edb1b9ffa12d18c3
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-02-17/rust-analyzer-x86_64-unknown-linux-gnu.gz
+        sha256: 89fd1698f3e5281a0176ba097aa7acf94f30b63a3370845cf04defd63166b56d
         filename: rust-analyzer.gz
-        size: 15940877
+        size: 15989468
         x-checker-data:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
@@ -95,10 +95,10 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-02-10/rust-analyzer-aarch64-unknown-linux-gnu.gz
-        sha256: 0f69b75a4a6fa1ad8c0698155baa1af5fe7f4b83c2203dfcfdab220449d29667
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-02-17/rust-analyzer-aarch64-unknown-linux-gnu.gz
+        sha256: fc5bd7e19068b4500093edb5705f2340cf145d77ad0886d13f904196cfa99361
         filename: rust-analyzer.gz
-        size: 15537003
+        size: 15573672
         x-checker-data:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
