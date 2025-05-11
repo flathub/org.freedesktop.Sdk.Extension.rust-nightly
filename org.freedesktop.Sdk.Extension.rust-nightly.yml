@@ -40,29 +40,29 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2025-05-04/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: a76786cd5ebff9c61579c711a60d0a8af55b07204c0eff3065f2555d11bcde75
+        url: https://static.rust-lang.org/dist/2025-05-11/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: c8bbbadb86cb8d5260d70929d5e0e64b5dddb2881d4ebf75e90e4444732f91da
         filename: rust-nightly.tar.xz
-        size: 317611217
+        size: 317780285
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2025-05-04/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: a2edc6497cc5bef5d19f75fb16792f36e5972cf8a0d1af765613041921050821
+        url: https://static.rust-lang.org/dist/2025-05-11/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: fc47ffc031ee16d686cc130a5d624319f9906a14649f48373899c7f83fe12bdd
         filename: rust-nightly.tar.xz
-        size: 362415657
+        size: 362610941
       - type: extra-data
-        url: https://static.rust-lang.org/dist/2025-05-04/rust-src-nightly.tar.gz
-        sha256: d6b5b6b3090bd7331db0e71118776b14ddfbd87ddc991d27fa33b17ad173cf93
+        url: https://static.rust-lang.org/dist/2025-05-11/rust-src-nightly.tar.gz
+        sha256: 29b68b7f2bb30ad2587371609f87a44d5faa54fe95720c811bf1f67d00d76a89
         filename: rust-src-nightly.tar.xz
-        size: 4756695
+        size: 4756575
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://github.com/rui314/mold/releases/download/v2.38.1/mold-2.38.1-x86_64-linux.tar.gz
-        sha256: a8ee65552762d6fed0ef31a779ecb8376c83bf68b277c9585988a1681fba6961
+        url: https://github.com/rui314/mold/releases/download/v2.39.0/mold-2.39.0-x86_64-linux.tar.gz
+        sha256: f120dfa0952a3df6695d93a3590b6a06398d52634ca8a7e744921a6f50a112b3
         filename: mold-linux.tar.gz
-        size: 4784627
+        size: 4998467
         x-checker-data:
           type: anitya
           project-id: 241732
@@ -71,10 +71,10 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://github.com/rui314/mold/releases/download/v2.38.1/mold-2.38.1-aarch64-linux.tar.gz
-        sha256: 7aebd40c97e3e3218fbad2db0cc614a03db1c014fbdf8f39d3c7103f665a2fdc
+        url: https://github.com/rui314/mold/releases/download/v2.39.0/mold-2.39.0-aarch64-linux.tar.gz
+        sha256: ee1d17497ded801dcaa7b89b3c0873f119a2d6f3df449c262f6a5a098c98819f
         filename: mold-linux.tar.gz
-        size: 4854246
+        size: 5097229
         x-checker-data:
           type: anitya
           project-id: 241732
@@ -83,10 +83,10 @@ modules:
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-04-28/rust-analyzer-x86_64-unknown-linux-gnu.gz
-        sha256: 628f72e069bf9291aa3d8583c2d775b3d030c70f4501b1c1610b621d6550d302
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-05-05/rust-analyzer-x86_64-unknown-linux-gnu.gz
+        sha256: 49e33b8b8d5270f7837f3d4a9f0e435bf8d3fa2d73de4c4d687920503fd30742
         filename: rust-analyzer.gz
-        size: 16551015
+        size: 16629367
         x-checker-data:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
@@ -95,10 +95,10 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-04-28/rust-analyzer-aarch64-unknown-linux-gnu.gz
-        sha256: 68bee74c55452a68e1d4c9c73bed6969214118a9576d985f5ae1eab6313e7c4f
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2025-05-05/rust-analyzer-aarch64-unknown-linux-gnu.gz
+        sha256: 23c6d09d5faa706267f577965b82acbb0ea76eeb778023952d07a7a47f4ca32b
         filename: rust-analyzer.gz
-        size: 16062190
+        size: 16122495
         x-checker-data:
           type: json
           url: https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest
