@@ -1,11 +1,11 @@
 app-id: org.example.test
 runtime: org.freedesktop.Platform
-runtime-version: '24.08beta'
+runtime-version: '25.08beta'
 sdk: org.freedesktop.Sdk
 command: test
 add-extensions:
   org.freedesktop.Sdk.Extension.rust-nightly:
-    version: '24.08beta'
+    version: '25.08beta'
     directory: sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-nightly
