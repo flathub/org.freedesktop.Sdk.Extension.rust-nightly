@@ -40,22 +40,22 @@ modules:
       - type: extra-data
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2025-09-28/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: 3acc7d31ca4361edea0ca56361e0e617348fb12070901900d6430ead9d49cb88
+        url: https://static.rust-lang.org/dist/2025-10-05/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: 0195517a75291fefe4df9301f04e577433afcde44d6bc137d9d87a49e62e9cc8
         filename: rust-nightly.tar.xz
-        size: 330117374
+        size: 330179659
       - type: extra-data
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2025-09-28/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: abd2eb2869dbb7264e418b8ba5fcf68e63227435f853aa6285ce8e2ad3cdf1e1
+        url: https://static.rust-lang.org/dist/2025-10-05/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: fdb6d3f55350104bfb258b61587d91fff1d8ae578353d9682481f4ae5d77533f
         filename: rust-nightly.tar.xz
-        size: 379503490
+        size: 380353166
       - type: extra-data
-        url: https://static.rust-lang.org/dist/2025-09-28/rust-src-nightly.tar.gz
-        sha256: 93921ee1dd2d5eaf174a90d790954ef2e14060ddd077cce94eaf5b7f4367984d
+        url: https://static.rust-lang.org/dist/2025-10-05/rust-src-nightly.tar.gz
+        sha256: 3ea31d9d11587c9181b5fb3ae9cc738ef8627fbccdeaa029aa447bac09b0e508
         filename: rust-src-nightly.tar.xz
-        size: 5306405
+        size: 5316308
       - type: extra-data
         only-arches:
           - x86_64
