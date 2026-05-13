@@ -13,5 +13,5 @@ sdk-extensions:
 modules:
   - name: foo
     build-options:
-      append-path: /usr/lib/sdk/rust-nightly/extra/sdk/rust-nightly/bin
+      append-path: /usr/lib/sdk/rust-nightly/bin
 ```
