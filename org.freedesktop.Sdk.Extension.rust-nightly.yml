@@ -31,6 +31,7 @@ modules:
           --verbose
 
       - install -Dm0755 mold/bin/mold ${SDK_PREFIX}/bin/mold
+      - install -Dm0755 mold/bin/ld.mold ${SDK_PREFIX}/bin/ld.mold
 
       - |
         gunzip rust-analyzer.gz
