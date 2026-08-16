@@ -101,24 +101,24 @@ modules:
       - type: archive
         only-arches:
           - aarch64
-        url: https://static.rust-lang.org/dist/2026-08-09/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
-        sha256: c35eb17e0a7ee3f631f4e90426a418ea3de78f3a5412a5204718fe8cd48248dc
+        url: https://static.rust-lang.org/dist/2026-08-16/rust-nightly-aarch64-unknown-linux-gnu.tar.gz
+        sha256: 23c387436a0821e38aa6f4888eb9a03335bb04fec319ae48df922a9457e3d2fc
         dest: rust
       - type: archive
         only-arches:
           - x86_64
-        url: https://static.rust-lang.org/dist/2026-08-09/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-        sha256: a143a8d8635f1259f90057bbbd5a8da4138a9599e28f33c64d7676b031fefbdc
+        url: https://static.rust-lang.org/dist/2026-08-16/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+        sha256: 8686e83976db88deabb4229ecf63068db12e268f08d694e236992713f65fb96e
         dest: rust
       - type: archive
-        url: https://static.rust-lang.org/dist/2026-08-09/rust-src-nightly.tar.gz
-        sha256: 80412dc752056cbde37ede36e1af72f3c27dcd71a3f2e3ec4fbf4c0933b489d2
+        url: https://static.rust-lang.org/dist/2026-08-16/rust-src-nightly.tar.gz
+        sha256: a043f2fb6e5240779cdaee6c9e078c67dfb904de2dcdfec5d2f247edee877484
         dest: rust-src
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-x86_64-linux.tar.gz
-        sha256: a3696680d99e692970590a178bc3a33d78d60d1c6dc9db7a11b557b02b751f5d
+        url: https://github.com/rui314/mold/releases/download/v2.42.0/mold-2.42.0-x86_64-linux.tar.gz
+        sha256: f5ed2f6e31d1ada4f07fe766fe0de7a73104d1c5cdc59086fcecc16a43720b6d
         dest: mold
         x-checker-data:
           type: anitya
@@ -128,8 +128,8 @@ modules:
       - type: archive
         only-arches:
           - aarch64
-        url: https://github.com/rui314/mold/releases/download/v2.41.0/mold-2.41.0-aarch64-linux.tar.gz
-        sha256: 946de2774b06a71346bd59b55fddba610b65b8d93c3a4a1559cc84e103472710
+        url: https://github.com/rui314/mold/releases/download/v2.42.0/mold-2.42.0-aarch64-linux.tar.gz
+        sha256: 3c9a0a3624aac8a2007569ae50c33b3129a0f0ae8bcc974aeee2f8939d295190
         dest: mold
         x-checker-data:
           type: anitya
@@ -139,8 +139,8 @@ modules:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2026-08-03/rust-analyzer-x86_64-unknown-linux-gnu.gz
-        sha256: 769670319df8571dac91b6eab6d3a65b18b69488a6900959f2fb6157181ace9d
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2026-08-10.1/rust-analyzer-x86_64-unknown-linux-gnu.gz
+        sha256: d42908a7dc7b89250ae881a0919e477296843665c98574ecc8fe16ba60cecefb
         dest-filename: rust-analyzer.gz
         x-checker-data:
           type: json
@@ -150,8 +150,8 @@ modules:
       - type: file
         only-arches:
           - aarch64
-        url: https://github.com/rust-lang/rust-analyzer/releases/download/2026-08-03/rust-analyzer-aarch64-unknown-linux-gnu.gz
-        sha256: ea5cb460f1532bf3c6f399b079840e968e3c25857669cd65af36dd707ea097e8
+        url: https://github.com/rust-lang/rust-analyzer/releases/download/2026-08-10.1/rust-analyzer-aarch64-unknown-linux-gnu.gz
+        sha256: a7eb3a97865dd189ad4fff526fbe73559bece876fdbd641e0f50f39271043542
         dest-filename: rust-analyzer.gz
         x-checker-data:
           type: json
